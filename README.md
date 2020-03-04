@@ -82,19 +82,19 @@ list of environment variables that can be set.
 
 ### Mounts
 
-#### /id_rsa
+#### /.ssh/id_rsa
 
 Mount the key you generated within the **Setup** step, or set
 `SSH_KEY_FILE`.
 
-    -v /path/to/id_rsa:/id_rsa
+    -v /path/to/id_rsa:/.ssh/id_rsa
 
-#### /known_hosts
+#### /.ssh/known_hosts
 
 Mount the `known_hosts` file if you want to enable **STRICT_KEY_CHECKING**,
 or set `SSH_KNOWN_HOSTS`.
 
-    -v /path/to/known_hosts:/known_hosts
+    -v /path/to/known_hosts:/.ssh/known_hosts
 
 ### Environment Variables
 
@@ -184,7 +184,7 @@ docker host, and onto the private lan where the connection will terminate
           - SSH_TUNNEL_LOCAL=22
         restart: always
         volumes:
-         - /etc/autossh/id_rsa:/id_rsa
+         - /etc/autossh/id_rsa:/.ssh/id_rsa
         dns:
          - 8.8.8.8
          - 1.1.1.1
@@ -200,7 +200,7 @@ docker host, and onto the private lan where the connection will terminate
           - SSH_TUNNEL_LOCAL=22
         restart: always
         volumes:
-          - /etc/autossh/id_rsa:/id_rsa
+          - /etc/autossh/id_rsa:/.ssh/id_rsa
         dns:
           - 8.8.8.8
           - 4.2.2.4
