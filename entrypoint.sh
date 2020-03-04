@@ -1,7 +1,7 @@
 #!/usr/bin/dumb-init /bin/sh
 
 # Set up key file
-KEY_FILE=${SSH_KEY_FILE:=/id_rsa}
+KEY_FILE=${SSH_KEY_FILE:=/.ssh/id_rsa}
 if [ ! -f "${KEY_FILE}" ]; then
     echo "[ERROR] No SSH Key file found"
     exit 1
@@ -12,7 +12,7 @@ cat "${SSH_KEY_FILE}" | ssh-add -k -
 # If known_hosts is provided, STRICT_HOST_KEY_CHECKING=yes
 # Default CheckHostIP=yes unless SSH_STRICT_HOST_IP_CHECK=false
 STRICT_HOSTS_KEY_CHECKING=no
-KNOWN_HOSTS=${SSH_KNOWN_HOSTS:=/known_hosts}
+KNOWN_HOSTS=${SSH_KNOWN_HOSTS:=/.ssh/known_hosts}
 if [ -f "${KNOWN_HOSTS}" ]; then
     KNOWN_HOSTS_ARG="-o UserKnownHostsFile=${KNOWN_HOSTS} "
     if [ "${SSH_STRICT_HOST_IP_CHECK}" = false ]; then
